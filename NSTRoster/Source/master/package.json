@@ -1,0 +1,54 @@
+{
+  "name": "NST Roster",
+  "version": "1.0.1.9.2.4",
+  "description": "NST Roster",
+  "google-app-engine-id": "MBHIWBGS-978-BH-NPQYRH",
+  "google-developers": {
+    "tdsouza": "Tony DSouza",
+    "kyekabathula":"Karthik Yekabathula",
+    "parjun": "Pallavi Arjun",
+    "rshinde": "Rajendra Shinde",
+    "sshingade": "Suraj Shingade",
+    "pjain": "Poonam Jain",
+  },
+  "scripts": {},
+  "keywords": [
+    "angular",
+    "react",
+    "flux",
+    "gauth",
+    "gapp"
+  ],
+  "author": [
+    {"tdsouza": "Tony DSouza"},
+    {"kyekabathula":"Karthik Yekabathula"},
+    {"parjun": "Pallavi Arjun"},
+    {"rshinde": "Rajendra Shinde"},
+    {"sshingade": "Suraj Shingade"},
+    {"pjain": "Poonam Jain"},
+  ],
+  "license": "GOOGLE(@)34333",
+  "private": true,
+  "devEngines": {
+    "node": "4.x",
+    "npm": "3.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "google-app-engine-np" : "^2.3.3",
+    "gmail-auth": "^1.5.0",
+    "project-google": "^5.0.9",
+    "google-protocol" : "^3",
+    "google-protocol-buffers" : "^3",
+    "google-protocol-tp" : "^3",
+    "google-protocol-support" : "^3",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.0",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0",
+    "gulp-uglify": "^2.0.0"
+  }
+}

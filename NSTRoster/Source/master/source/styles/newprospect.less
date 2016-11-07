@@ -1,0 +1,46 @@
+.common-text{
+        color:@base_color;
+		font-family:@font_0;
+		font-size: 15px;
+}
+.adform-margin {
+	margin-top: -165px;
+}
+.pad-30 {
+	padding: 30px;
+}
+.mar-content {
+	margin:6px 0 24px;
+}
+.height_70 {
+	height: 70px;
+}
+.Business Rule-form.form-control {
+	background-color: @white;
+	background-image: none;
+	border-radius: 1px;
+	border: 1px solid @color_middle_gray;
+	color: @color_lightmid_gray;
+	display: block;
+	font-size: 14px;
+	height: 40px;
+	line-height: 1.42857;
+	padding: 6px 12px;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+	width: @width_100;
+}
+.form-content {
+	p.title {
+		&:extend(.common-text);
+		font-weight:@font_wgt_6;
+	}
+	p {
+       &:extend(.common-text);
+		line-height: 26px;
+		margin-bottom: 5px;
+	}
+}
+.Business Rule-form {
+	float: @float_left;
+	width: @width_100;
+}

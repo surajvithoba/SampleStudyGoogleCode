@@ -1,0 +1,141 @@
+
+
+.common-icn{
+    width: 25px;
+	height: 25px;
+	float:@float_left;
+    
+}
+
+.header {
+	width: 100%;
+	background: @color_funblue;
+	z-index: 6;
+	position: fixed;
+	top: 0;
+	height: 62px;
+}
+.header-hgt {
+	height: 170px;
+}
+.logo {
+	padding-top: 17px;
+	img {
+		height: 35px;
+	}
+}
+.md-icon {
+	display: block;
+	float:@float_left;
+	margin-left: 2px;
+	width: 41px;
+	height: 37px;
+	padding-top: 18px;
+}
+.profile-img {
+	float:@float_left;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	img {
+		width: 100%;
+		display: block;
+	}
+}
+.ad-name {
+	color: @white;
+	position: relative;
+	margin-left: 40px;
+	margin-top: 0;
+	font: 400 15px/1.5 "Open Sans", sans-serif;
+}
+.userText {
+	margin: 18px 0 0 3px;
+}
+.arrow-mn {
+	position: absolute;
+	height: 100%;
+	right: 0;
+	top: 0;
+}
+.lastsync {
+	font-family: @font_0;
+	font-size: 10px;
+	color: @color_blue2;
+	float:@float_left;
+	padding-top: 25px;
+	padding-right: 9px;
+}
+.Notification-count {
+	position: relative;
+	top: -31px;
+	float:@float_left;
+	right: 6px;
+	li {
+		float:@float_left;
+		position: relative;
+		display: block;
+		color: @white;
+		width: 17px;
+		height: 17px;
+        border-radius: 50%;
+		background: @color_blue2;
+		text-align: center;
+		line-height: 17px;
+		margin-left: 20px;
+		font-size: 12px;
+		&.clear {
+			background: @color_blue2;
+			span {
+				text-indent: -1000px;
+				display: block;
+			}
+			&:before {
+				content: "";
+				position: absolute;
+				width: 15px;
+				height: 6px;
+				background: transparent;
+				top: 9px;
+				left: 7px;
+				border: 2px solid @color_funblue;
+				border-top: none;
+				border-right: none;
+				transform: rotate(-45deg);
+				z-index: 10;
+			}
+		}
+		&.active {
+			background: @color_blue2;
+			color: @white;
+		}
+	}
+}
+.notifyimg {
+	background: @notification no-repeat;
+    &:extend(.common-icn);
+}
+.translateimg {
+	width: 25px;
+	height: 25px;
+	background: @transulate no-repeat;
+	float:@float_left;
+}
+.refreshimg {
+		background: @refresh no-repeat;
+        &:extend(.common-icn);
+}
+.currencyimg {
+		background: @currrency no-repeat;
+        &:extend(.common-icn);
+}
+
+.logimg {
+	background: @logo no-repeat;
+	 &:extend(.common-icn);
+}
+.header-ajt span {
+	background-size: 100% 100%;
+}
