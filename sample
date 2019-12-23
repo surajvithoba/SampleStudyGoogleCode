@@ -1,0 +1,188 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 23, 2019 at 03:54 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `document_service`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `datapoint_direct_mapping`
+--
+
+CREATE TABLE `datapoint_direct_mapping` (
+  `id` int(11) NOT NULL,
+  `endpoint_id` int(11) NOT NULL,
+  `query_filter` varchar(2000) NOT NULL,
+  `response_query` varchar(2000) NOT NULL,
+  `data_location` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_points`
+--
+
+CREATE TABLE `data_points` (
+  `id` int(11) NOT NULL,
+  `mapping_id` int(11) NOT NULL,
+  `document_id` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `type` varchar(200) NOT NULL COMMENT 'DIRECT,TABLE',
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `document`
+--
+
+CREATE TABLE `document` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `document_type` varchar(200) NOT NULL COMMENT 'pdf,doc,docx',
+  `template_path` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `document_tags`
+--
+
+CREATE TABLE `document_tags` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `identifier` varchar(250) NOT NULL,
+  `type` varchar(200) NOT NULL COMMENT 'TEXT, TABLE',
+  `document_id` int(11) NOT NULL,
+  `data_point_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `endpoint`
+--
+
+CREATE TABLE `endpoint` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `endpoint` varchar(2000) NOT NULL,
+  `host` varchar(250) NOT NULL,
+  `authorization` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `datapoint_direct_mapping`
+--
+ALTER TABLE `datapoint_direct_mapping`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `endpoint_id` (`endpoint_id`);
+
+--
+-- Indexes for table `data_points`
+--
+ALTER TABLE `data_points`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `document_id` (`document_id`),
+  ADD KEY `mapping_id` (`mapping_id`);
+
+--
+-- Indexes for table `document`
+--
+ALTER TABLE `document`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `document_tags`
+--
+ALTER TABLE `document_tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `document_id` (`document_id`),
+  ADD KEY `data_point_id` (`data_point_id`);
+
+--
+-- Indexes for table `endpoint`
+--
+ALTER TABLE `endpoint`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `datapoint_direct_mapping`
+--
+ALTER TABLE `datapoint_direct_mapping`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `data_points`
+--
+ALTER TABLE `data_points`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `document`
+--
+ALTER TABLE `document`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `document_tags`
+--
+ALTER TABLE `document_tags`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `endpoint`
+--
+ALTER TABLE `endpoint`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `datapoint_direct_mapping`
+--
+ALTER TABLE `datapoint_direct_mapping`
+  ADD CONSTRAINT `datapoint_direct_mapping_ibfk_1` FOREIGN KEY (`endpoint_id`) REFERENCES `endpoint` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `data_points`
+--
+ALTER TABLE `data_points`
+  ADD CONSTRAINT `data_points_ibfk_1` FOREIGN KEY (`document_id`) REFERENCES `document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `data_points_ibfk_2` FOREIGN KEY (`mapping_id`) REFERENCES `datapoint_direct_mapping` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `document_tags`
+--
+ALTER TABLE `document_tags`
+  ADD CONSTRAINT `document_tags_ibfk_1` FOREIGN KEY (`document_id`) REFERENCES `document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `document_tags_ibfk_2` FOREIGN KEY (`data_point_id`) REFERENCES `data_points` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
